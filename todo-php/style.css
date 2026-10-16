@@ -1,0 +1,73 @@
+:root{
+  --bg:#f4f1ec; --surface:#fffdf9; --ink:#1e1b18; --muted:#6a625a; --line:#ddd5ca;
+  --brand:#2f4bd6; --brand-ink:#fff; --err:#b3261e; --ok:#1d7a46;
+  --high:#c4361f; --medium:#b7791f; --low:#3b7a57;
+  --head:"Trebuchet MS","Segoe UI",system-ui,sans-serif;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#16171c; --surface:#1f2128; --ink:#ecebe6; --muted:#9a9aa3; --line:#34363f;
+    --brand:#8ea0ff; --brand-ink:#10122a; --err:#ff8a80; --ok:#6fd49a;
+    --high:#ff8f78; --medium:#e9b44c; --low:#7fd0a0; color-scheme:dark;
+  }
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.5 var(--body);min-height:100%}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.app{width:min(640px,100% - 2rem);margin:0 auto;padding:2.5rem 0 4rem}
+h1{font:800 clamp(2rem,6vw,2.8rem)/1.1 var(--head);margin:0;letter-spacing:-.03em}
+.sub{color:var(--muted);margin:.35rem 0 1.5rem}
+
+.warn{background:var(--surface);border:2px solid var(--err);color:var(--err);padding:.75rem 1rem;border-radius:10px;margin-bottom:1rem}
+
+input[type=text],input[type=date],select{font:inherit;color:var(--ink);background:var(--surface);border:2px solid var(--line);border-radius:10px;padding:.65rem .8rem;min-width:0}
+input:focus,select:focus{outline:none;border-color:var(--brand)}
+.add{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1rem}
+.add-main{display:flex;gap:.6rem}
+.add-main input{flex:1}
+.add-meta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:.8rem;color:var(--muted);font-size:.9rem}
+.add-meta label{display:flex;align-items:center;gap:.5rem}
+.add-meta select,.add-meta input{padding:.4rem .6rem}
+.err{color:var(--err);font-size:.9rem;min-height:1.3rem;margin:.5rem 0 0}
+.add.invalid #title{border-color:var(--err)}
+
+.btn{font:600 .95rem var(--body);border:2px solid transparent;border-radius:10px;padding:.6rem 1rem;cursor:pointer}
+.btn.primary{background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:none;border-color:var(--line);color:var(--ink)}
+.btn.small{padding:.3rem .65rem;font-size:.85rem;background:none;border-color:var(--line);color:var(--ink)}
+.btn.small.danger{color:var(--err)}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;margin:1.5rem 0 .75rem}
+.tabs{display:flex;gap:.25rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.25rem}
+.tab{background:none;border:0;border-radius:9px;padding:.4rem .9rem;font:600 .9rem var(--body);color:var(--muted);cursor:pointer}
+.tab[aria-pressed=true]{background:var(--brand);color:var(--brand-ink)}
+
+.list{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.item{display:flex;gap:.8rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--low);border-radius:12px;padding:.8rem .9rem}
+.item[data-p=high]{border-left-color:var(--high)}
+.item[data-p=medium]{border-left-color:var(--medium)}
+.item input[type=checkbox]{width:22px;height:22px;margin-top:.15rem;accent-color:var(--brand);flex:none;cursor:pointer}
+.body{flex:1;min-width:0}
+.t{overflow-wrap:anywhere}
+.item.done .t{text-decoration:line-through;color:var(--muted)}
+.meta{font-size:.85rem;color:var(--muted);margin-top:.15rem}
+.meta .overdue{color:var(--err);font-weight:600}
+.actions{display:flex;gap:.4rem;flex:none}
+.edit-form{flex:1;display:grid;gap:.5rem}
+.edit-form .row{display:flex;gap:.5rem;flex-wrap:wrap}
+.edit-form input[type=text]{width:100%}
+.empty{text-align:center;color:var(--muted);padding:2rem 1rem;border:2px dashed var(--line);border-radius:12px}
+@media (max-width:480px){
+  .add-main{flex-direction:column}
+  .item{flex-wrap:wrap}
+  .actions{width:100%;justify-content:flex-end}
+}

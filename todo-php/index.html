@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taskboard – To-Do List (PHP + MySQL)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>Taskboard</h1>
+    <p class="sub" id="summary" aria-live="polite"></p>
+  </header>
+
+  <div class="warn" id="warn" role="alert" hidden></div>
+
+  <form id="add-form" class="add" novalidate>
+    <div class="add-main">
+      <label class="sr" for="title">New task</label>
+      <input id="title" type="text" maxlength="120" placeholder="What needs doing?" autocomplete="off" aria-describedby="title-err">
+      <button type="submit" class="btn primary">Add task</button>
+    </div>
+    <div class="add-meta">
+      <label>Priority
+        <select id="priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select>
+      </label>
+      <label>Due date <input id="due" type="date"></label>
+    </div>
+    <p class="err" id="title-err" aria-live="polite"></p>
+  </form>
+
+  <div class="toolbar">
+    <div class="tabs" role="group" aria-label="Filter tasks">
+      <button class="tab" data-filter="all" aria-pressed="true">All</button>
+      <button class="tab" data-filter="active" aria-pressed="false">Active</button>
+      <button class="tab" data-filter="done" aria-pressed="false">Done</button>
+    </div>
+    <button class="btn ghost" id="clear" type="button">Clear completed</button>
+  </div>
+
+  <ul id="list" class="list"></ul>
+  <p class="empty" id="empty" hidden></p>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
